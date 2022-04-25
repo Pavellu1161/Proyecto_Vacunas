@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Vacunas_sis.Models.Registro>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Numero_historia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ninos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Detalles)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Numero_historia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ninos.Edad_cap)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Detalles.Numero_dosis_aplicada)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id_registro">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id_registro">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id_registro">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
