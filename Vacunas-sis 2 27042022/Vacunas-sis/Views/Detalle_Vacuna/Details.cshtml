@@ -1,0 +1,36 @@
+﻿@model Vacunas_sis.Models.Detalle_Vacuna
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<br />
+<h1 style="text-align:center">Detalles de registro:</h1>
+
+<div>
+    <hr />
+    <div style="display:flex; justify-content:center">
+        <div class="form-group">
+            <label class="control-label" style="font-weight:bold"> @Html.DisplayNameFor(model => model.Fecha_aplicacion)</label>
+            <span class="text">@Html.DisplayFor(model => model.Fecha_aplicacion)</span>
+            <br />
+            <label class="control-label" style="font-weight:bold">  @Html.DisplayNameFor(model => model.Numero_dosis_aplicada)</label>
+            <span class="text">@Html.DisplayFor(model => model.Numero_dosis_aplicada)</span>
+            <br />
+            <label class="control-label" style="font-weight:bold"> @Html.DisplayNameFor(model => model.Numero_dosis_restantes)</label>
+            <span class="text">@Html.DisplayFor(model => model.Numero_dosis_restantes)</span>
+            <br />
+            <label class="control-label" style="font-weight:bold">  @Html.DisplayNameFor(model => model.Fecha_proxima_dosis)</label>
+            <span class="text">@Html.DisplayFor(model => model.Fecha_proxima_dosis)</span>
+            <br />
+            <label class="control-label" style="font-weight:bold"> @Html.DisplayNameFor(model => model.Vacunas)</label>
+            <span class="text">@Html.DisplayFor(model => model.Vacunas.Nombre_vacuna)</span>
+            <br />
+        </div>
+    </div>
+
+</div>
+<div style="display:flex; justify-content:center">
+    <a asp-action="Edit" asp-route-id="@Model.Id_detalle_vacuna" class="btn btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i> Editar</a> |
+    <a asp-action="Index" class="btn btn-danger"><i class="fa fa-times-circle" aria-hidden="true"></i> Cancelar</a>
+</div>

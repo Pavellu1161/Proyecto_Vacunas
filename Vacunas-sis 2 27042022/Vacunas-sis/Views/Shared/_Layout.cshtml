@@ -1,0 +1,156 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Vacunas_sis</title>
+
+
+    <!-- Nucleo Icons -->
+
+  
+    <link rel="stylesheet" href="~/css/nucleo-icons.css" />
+      <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+       <link rel="stylesheet" href="~/css/sb-admin-2.css" />
+
+
+
+
+
+
+</head>
+
+<body id="page-top">
+
+    <!-- Barra Superior -->
+ 
+    <div id="wrapper">
+ 
+   <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-laugh-wink"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">Vacunacion </div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Home -->
+            <li class="nav-item active">
+               <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Home</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- SubTitulo -->
+            <div class="sidebar-heading">
+                Paciente
+            </div>
+
+            <!-- Contacto -->
+             <li class="nav-item active">
+               <a class="nav-link " asp-area="" asp-controller="Contactoes" asp-action="Index">
+                    <i class="fas fa-book"></i>
+                    <span>Contacto</span></a>
+            </li>
+
+              <!-- Direccion -->
+            
+             <li class="nav-item active">
+               <a class="nav-link " asp-area="" asp-controller="Direccions" asp-action="Index">
+                  <i class="fa fa-map-marker" aria-hidden="true"></i>
+                    <span>Direccion</span></a>
+            </li> 
+
+             <!-- Paciente -->
+            
+             <li class="nav-item active">
+            <a class="nav-link " asp-area="" asp-controller="Informacion_nino" asp-action="Index">
+                  <i class="fa fa-user" aria-hidden="true"></i>
+                    <span>Paciente</span></a>
+            </li> 
+            <!-- Registro -->
+            
+             <li class="nav-item active">
+            <a class="nav-link " asp-area="" asp-controller="Registroes" asp-action="Index">
+                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    <span>Registro Clinico</span></a>
+            </li> 
+          
+          
+          
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Vacunas
+            </div>
+             <!-- Registro -->
+            
+             <li class="nav-item active">
+             <a class="nav-link" asp-area="" asp-controller="Vacunas" asp-action="Index">
+                 <i class="fa fa-bug" aria-hidden="true"></i>
+                    <span>Vacunas</span></a>
+            </li> 
+
+              
+             <li class="nav-item active">
+            <a class="nav-link " asp-area="" asp-controller="Detalle_vacuna" asp-action="Index"> 
+                 <i class="fa fa-asterisk" aria-hidden="true"></i>
+                    <span>Detalle Vacuna</span></a>
+            </li> 
+          
+            
+
+
+
+        </ul>
+
+
+
+
+
+
+   <!-- Barra Superior FIN -->
+
+   <div id="content-wrapper" class="d-flex flex-column">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <!-- Custom scripts for all pages-->
+    
+   
+    
+    
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+
+
+    </div>
+
+    
+
+  </body>
+
+   <footer class="sticky-footer bg-white">
+        <div class="container my-auto text-center">
+            &copy; 2022 - Vacunas_sis - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+
+</html>

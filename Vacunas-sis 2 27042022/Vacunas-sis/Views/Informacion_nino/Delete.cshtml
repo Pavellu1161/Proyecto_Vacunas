@@ -1,0 +1,47 @@
+﻿@model Vacunas_sis.Models.Informacion_nino
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1 style="text-align:center">Eliminar Información del paciente:</h1>
+
+<h3 class="text-danger" style="text-align:center">¿Esta seguro(a) de querer eliminar este registro?</h3>
+<div>
+    <hr />
+    <div style="display:flex; justify-content:center">
+        <div class="form-group">
+            <label class="control-label" style="font-weight:bold"> @Html.DisplayNameFor(model => model.Numero_identidad)</label>
+            <span class="text">@Html.DisplayFor(model => model.Numero_identidad)</span>
+            <br />
+            <label class="control-label" style="font-weight:bold"> @Html.DisplayNameFor(model => model.Nombre_nino)</label>
+            <span class="text">@Html.DisplayFor(model => model.Nombre_nino)</span>
+            <br />
+            <label class="control-label" style="font-weight:bold"> @Html.DisplayNameFor(model => model.Nombre_responsabe)</label>
+            <span class="text">@Html.DisplayFor(model => model.Nombre_responsabe)</span>
+            <br />
+            <label class="control-label" style="font-weight:bold"> @Html.DisplayNameFor(model => model.Fecha_nacimineto)</label>
+            <span class="text">@Html.DisplayNameFor(model => model.Fecha_nacimineto)</span>
+            <br />
+            <label class="control-label" style="font-weight:bold"> @Html.DisplayNameFor(model => model.Edad_cap)</label>
+            <span class="text">@Html.DisplayFor(model => model.Edad_cap)</span>
+            <br />
+            <label class="control-label" style="font-weight:bold"> @Html.DisplayNameFor(model => model.Contactos)</label>
+            <span class="text">@Html.DisplayFor(model => model.Contactos.Nombre_responsable)</span>
+            <span class="text">@Html.DisplayFor(model => model.Contactos.Tipo_de_contacto)</span>
+            <span class="text">@Html.DisplayFor(model => model.Contactos.Detalle)</span>
+            <br />
+            <label class="control-label" style="font-weight:bold"> @Html.DisplayNameFor(model => model.Direcciones)</label>
+            <span class="text"> @Html.DisplayFor(model => model.Direcciones.Cuidad)</span>
+            <span class="text"> @Html.DisplayFor(model => model.Direcciones.Barrio)</span>
+            <span class="text"> @Html.DisplayFor(model => model.Direcciones.Detalle_direccion)</span>
+
+            <br />
+        </div>
+    </div>
+</div>
+<form asp-action="Delete" style="display:flex; justify-content:center">
+    <input type="hidden" asp-for="Id_nino" />
+    <button class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</button>| |
+    <a asp-action="Index" class="btn btn-warning"><i class="fa fa-times-circle" aria-hidden="true"></i> Cancelar</a>
+</form>

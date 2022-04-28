@@ -1,0 +1,38 @@
+﻿@model Vacunas_sis.Models.Detalle_Vacuna
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1 style="text-align:center">Eliminar registro:</h1>
+
+<h3 class="text-danger" style="text-align:center">¿Esta seguro(a) de querer eliminar este registro?</h3>
+<br />
+<div>
+    <hr />
+    <div style="display:flex; justify-content:center">
+        <div class="form-group">
+            <label class="control-label" style="font-weight:bold"> @Html.DisplayNameFor(model => model.Fecha_aplicacion)</label>
+            <span class="text">@Html.DisplayFor(model => model.Fecha_aplicacion)</span>
+            <br />
+            <label class="control-label" style="font-weight:bold">  @Html.DisplayNameFor(model => model.Numero_dosis_aplicada)</label>
+            <span class="text">@Html.DisplayFor(model => model.Numero_dosis_aplicada)</span>
+            <br />
+            <label class="control-label" style="font-weight:bold"> @Html.DisplayNameFor(model => model.Numero_dosis_restantes)</label>
+            <span class="text">@Html.DisplayFor(model => model.Numero_dosis_restantes)</span>
+            <br />
+            <label class="control-label" style="font-weight:bold">  @Html.DisplayNameFor(model => model.Fecha_proxima_dosis)</label>
+            <span class="text">@Html.DisplayFor(model => model.Fecha_proxima_dosis)</span>
+            <br />
+            <label class="control-label" style="font-weight:bold"> @Html.DisplayNameFor(model => model.Vacunas)</label>
+            <span class="text">@Html.DisplayFor(model => model.Vacunas.Nombre_vacuna)</span>
+            <br />
+        </div>
+    </div>
+
+    <form style="display:flex; justify-content:center" asp-action="Delete">
+        <input type="hidden" asp-for="Id_detalle_vacuna" />
+        <button class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</button>|
+        <a asp-action="Index" class="btn btn-warning"><i class="fa fa-times-circle" aria-hidden="true"></i> Cancelar</a>
+    </form>
+</div>

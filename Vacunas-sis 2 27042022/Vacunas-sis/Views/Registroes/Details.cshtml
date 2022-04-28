@@ -1,0 +1,30 @@
+﻿@model Vacunas_sis.Models.Registro
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1 style="text-align:center">Detalles:</h1>
+<br />
+
+<div>
+
+    <hr />
+    <div style="display:flex; justify-content:center">
+        <div class="form-group">
+            <label class="control-label" style="font-weight:bold"> @Html.DisplayNameFor(model => model.Numero_historia)</label>
+            <span class="text">@Html.DisplayFor(model => model.Numero_historia)</span>
+            <br />
+            <label class="control-label" style="font-weight:bold"> @Html.DisplayNameFor(model => model.Ninos)</label>
+            <span class="text">@Html.DisplayFor(model => model.Ninos.Edad_cap)</span>
+            <br />
+            <label class="control-label" style="font-weight:bold"> @Html.DisplayNameFor(model => model.Detalles)</label>
+            <span class="text">@Html.DisplayFor(model => model.Detalles.Numero_dosis_aplicada)</span>
+            <br />
+        </div>
+    </div>
+</div>
+<div style="display:flex; justify-content:center">
+    <a asp-action="Edit" asp-route-id="@Model.Id_registro" class="btn btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i> Editar</a> |
+    <a asp-action="Index" class="btn btn-danger"><i class="fa fa-times-circle" aria-hidden="true"></i> Cancelar</a>
+</div>
