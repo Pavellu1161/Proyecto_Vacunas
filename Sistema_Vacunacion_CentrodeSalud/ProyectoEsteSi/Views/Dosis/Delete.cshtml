@@ -1,0 +1,36 @@
+﻿@model ProyectoEsteSi.Models.Dosi
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<br />
+<h1 style="text-align:center">Eliminar Información del paciente:</h1>
+
+<h3 class="text-danger" style="text-align:center">¿Esta seguro(a) de querer eliminar este registro?</h3>
+
+<div>
+    <hr />
+    <div style="display:flex; justify-content:center">
+        <div class="form-group">
+            <label class="control-label" style="font-weight:bold"> @Html.DisplayNameFor(model => model.Pacientes.Nombre_nino)</label>
+            <span class="text">@Html.DisplayFor(model => model.Pacientes.Nombre_nino)</span>
+            <br />
+            <label class="control-label" style="font-weight:bold"> @Html.DisplayNameFor(model => model.Pacientes.Numero_identidad)</label>
+            <span class="text">@Html.DisplayFor(model => model.Pacientes.Numero_identidad)</span>
+            <br />
+            <label class="control-label" style="font-weight:bold"> @Html.DisplayNameFor(model => model.Vacunas)</label>
+            <span class="text">@Html.DisplayFor(model => model.Vacunas.Nombre_vacuna)</span>
+            <br />
+            <label class="control-label" style="font-weight:bold"> @Html.DisplayNameFor(model => model.restante)</label>
+            <span class="text">@Html.DisplayFor(model => model.restante)</span>
+            <br />
+        </div>
+    </div>
+
+    <form asp-action="Delete" style="display:flex; justify-content:center">
+        <input type="hidden" asp-for="IdDosis" />
+        <button class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</button>| |
+        <a asp-action="Index" class="btn btn-warning"><i class="fa fa-times-circle" aria-hidden="true"></i> Cancelar</a>
+    </form>
+</div>

@@ -1,0 +1,37 @@
+﻿@model ProyectoEsteSi.Models.Cita
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<br />  
+<h1 style="text-align:center">Eliminar contacto:</h1>
+<br />
+
+<h3 class="text-danger" style="text-align:center">¿Esta seguro(a) de querer eliminar este registro?</h3>
+
+<div>
+    
+    <hr />
+    <div style="display:flex; justify-content:center">
+        <div class="form-group">
+            <br />
+            <label class="control-label" style="font-weight:bold"> @Html.DisplayNameFor(model => model.Fecha)</label>
+            <span class="text">@Html.DisplayFor(model => model.Fecha)</span>
+            <br />
+            <label class="control-label" style="font-weight:bold"> @Html.DisplayNameFor(model => model.Fecha_proxima)</label>
+            <span class="text">@Html.DisplayFor(model => model.Fecha_proxima)</span>
+            <br />
+            <label class="control-label" style="font-weight:bold">  @Html.DisplayNameFor(model => model.Dosis.IdDosis)</label>
+            <span class="text">@Html.DisplayFor(model => model.Dosis.IdDosis)</span>
+            <br />
+
+        </div>
+    </div>
+
+    <form style="display:flex; justify-content:center" asp-action="Delete">
+        <input type="hidden" asp-for="IdCita" />
+        <button class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</button>|
+        <a asp-action="Index" class="btn btn-warning"><i class="fa fa-times-circle" aria-hidden="true"></i> Cancelar</a>
+    </form>
+</div>

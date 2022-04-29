@@ -1,0 +1,55 @@
+﻿@model IEnumerable<ProyectoEsteSi.Models.Dosi>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<br />
+<h1 style="text-align:center">Información dosis</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary ml-5"><i class="fa fa-plus-circle" aria-hidden="true"></i> Ingresar nueva dosis</a>
+</p>
+<table class="table ml-lg-5">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdDosis)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pacientes.Numero_identidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vacunas.Nombre_vacuna)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.restante)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdDosis)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pacientes.Numero_identidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Vacunas.Nombre_vacuna)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.restante)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdDosis" class=" btn btn-info"><i class="fa fa-pencil" aria-hidden="true"></i> Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.IdDosis" class="btn btn-success"><i class="fa fa-info-circle" aria-hidden="true"></i> Detalles</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdDosis" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

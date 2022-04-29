@@ -1,0 +1,63 @@
+﻿@model IEnumerable<ProyectoEsteSi.ViewModels.CitaViewModel>
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<br />
+<h1 style="text-align:center">Información Cita</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary ml-3"><i class="fa fa-plus-circle" aria-hidden="true"></i> Ingreso de nueva cita</a>
+</p>
+
+<table class="table ml-3">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Numero_identidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fecha)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre_vacuna)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.restante)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fecha_proxima)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Numero_identidad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fecha)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre_vacuna)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.restante)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fecha_proxima)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-info"><i class="fa fa-pencil" aria-hidden="true"></i> Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-success"><i class="fa fa-info-circle" aria-hidden="true"></i> Detalles</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

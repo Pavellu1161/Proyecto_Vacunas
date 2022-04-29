@@ -1,0 +1,30 @@
+﻿@model ProyectoEsteSi.Models.Direccion
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<br />
+<h1 style="text-align:center">Eliminar dirección:</h1>
+
+<h3 style="text-align:center" class="text-danger">¿Esta seguro(a) de querer eliminar esta dirección?</h3>
+
+<div>
+    <hr />
+    <div style="display:flex; justify-content:center">
+        <div class="form-group">
+            <label class="control-label" style="font-weight:bold"> @Html.DisplayNameFor(model => model.Cuidad)</label>
+            <span class="text">@Html.DisplayFor(model => model.Cuidad)</span>
+            <br />
+            <label class="control-label" style="font-weight:bold"> @Html.DisplayNameFor(model => model.Detalle_direccion)</label>
+            <span class="text">@Html.DisplayFor(model => model.Detalle_direccion)</span>
+            <br />
+        </div>
+    </div>
+
+    <form style="display:flex; justify-content:center" asp-action="Delete">
+        <input type="hidden" asp-for="Id_direccion" />
+        <button class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</button>|
+        <a asp-action="Index" class="btn btn-warning"><i class="fa fa-times-circle" aria-hidden="true"></i> Cancelar</a>
+    </form>
+</div>
