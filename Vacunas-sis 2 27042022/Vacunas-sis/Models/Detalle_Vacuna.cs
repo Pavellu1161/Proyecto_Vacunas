@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.OData.Edm;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -15,6 +16,7 @@ namespace Vacunas_sis.Models
 
         [Required(ErrorMessage = "Este campo es obligatorio.")]
         [Display(Name = "Fecha aplicacion de vacuna:")]
+        
         public DateTime Fecha_aplicacion { get; set; }
 
         [Required(ErrorMessage = "Este campo es obligatorio.")]

@@ -1,0 +1,36 @@
+﻿@model ProyectoEsteSi.Models.Dosi
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Dosi</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.restante)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.restante)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Pacientes)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Pacientes.Edad_cap)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Vacunas)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Vacunas.Edad_aplicable)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.IdDosis">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

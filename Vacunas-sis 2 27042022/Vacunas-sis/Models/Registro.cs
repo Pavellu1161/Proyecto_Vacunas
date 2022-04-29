@@ -27,7 +27,5 @@ namespace Vacunas_sis.Models
 
         [ForeignKey("Id_detalle_vacuna")]
         public Detalle_Vacuna Detalles { get; set; }
-
-
     }
 }

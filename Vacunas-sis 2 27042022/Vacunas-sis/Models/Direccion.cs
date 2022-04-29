@@ -14,9 +14,6 @@ namespace Vacunas_sis.Models
         [Display(Name = "Nombre de la cuidad donde recide:")]
         public string Cuidad { get; set; }
 
-        [Display(Name = "Nombre del barrio donde recide:")]
-        public string Barrio { get; set; }
-
         [Display(Name = "Detalles de direccion:")]
         public string Detalle_direccion { get; set; }
 

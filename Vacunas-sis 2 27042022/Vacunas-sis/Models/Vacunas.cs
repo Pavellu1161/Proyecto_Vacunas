@@ -29,7 +29,7 @@ namespace Vacunas_sis.Models
         public string Edad_aplicable { get; set; }
 
         public IEnumerable<Detalle_Vacuna> Detalles { get; set; }
-
+        public IEnumerable<Dosis> Doses { get; set; }
 
     }
 }

@@ -22,7 +22,7 @@ namespace Vacunas_sis.Controllers
         // GET: Informacion_nino
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Informacion_nino.Include(i => i.Contactos).Include(i => i.Direcciones);
+            var applicationDbContext = _context.Informacion_nino.Include(i => i.Direcciones);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -35,7 +35,6 @@ namespace Vacunas_sis.Controllers
             }
 
             var informacion_nino = await _context.Informacion_nino
-                .Include(i => i.Contactos)
                 .Include(i => i.Direcciones)
                 .FirstOrDefaultAsync(m => m.Id_nino == id);
             if (informacion_nino == null)
@@ -50,7 +49,6 @@ namespace Vacunas_sis.Controllers
         public IActionResult Create()
         {
 
-            ViewData["Id_contacto"] = new SelectList(_context.Contacto, "Id_contacto", "Nombre_responsable", "Tipo_de_contacto", "Detalle");
             ViewData["Id_direccion"] = new SelectList(_context.Direccion, "Id_direccion", "Cuidad","Barrio", "Detalle_direccion");
             return View();
         }
@@ -68,7 +66,6 @@ namespace Vacunas_sis.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Id_contacto"] = new SelectList(_context.Contacto, "Id_contacto", "Detalle", informacion_nino.Id_contacto);
             ViewData["Id_direccion"] = new SelectList(_context.Direccion, "Id_direccion", "Detalle_direccion", informacion_nino.Id_direccion);
             return View(informacion_nino);
         }
@@ -86,7 +83,6 @@ namespace Vacunas_sis.Controllers
             {
                 return NotFound();
             }
-            ViewData["Id_contacto"] = new SelectList(_context.Contacto, "Id_contacto", "Detalle", informacion_nino.Id_contacto);
             ViewData["Id_direccion"] = new SelectList(_context.Direccion, "Id_direccion", "Detalle_direccion", informacion_nino.Id_direccion);
             return View(informacion_nino);
         }
@@ -123,7 +119,7 @@ namespace Vacunas_sis.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Id_contacto"] = new SelectList(_context.Contacto, "Id_contacto", "Detalle", informacion_nino.Id_contacto);
+            
             ViewData["Id_direccion"] = new SelectList(_context.Direccion, "Id_direccion", "Detalle_direccion", informacion_nino.Id_direccion);
             return View(informacion_nino);
         }
@@ -137,7 +133,6 @@ namespace Vacunas_sis.Controllers
             }
 
             var informacion_nino = await _context.Informacion_nino
-                .Include(i => i.Contactos)
                 .Include(i => i.Direcciones)
                 .FirstOrDefaultAsync(m => m.Id_nino == id);
             if (informacion_nino == null)

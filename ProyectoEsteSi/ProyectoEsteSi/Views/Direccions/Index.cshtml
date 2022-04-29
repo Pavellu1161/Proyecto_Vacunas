@@ -1,0 +1,42 @@
+﻿@model IEnumerable<ProyectoEsteSi.Models.Direccion>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<br />
+<h1 style="text-align:center">Dirección</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary ml-5"><i class="fa fa-plus-circle" aria-hidden="true"></i> Ingresar nueva dirección</a>
+</p>
+<table class="table ml-5">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Cuidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Detalle_direccion)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cuidad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Detalle_direccion)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id_direccion" class="btn btn-info"><i class="fa fa-pencil" aria-hidden="true"></i> Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id_direccion" class="btn btn-success"><i class="fa fa-info-circle" aria-hidden="true"></i> Detalles</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id_direccion" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -22,9 +22,6 @@
                 @Html.DisplayNameFor(model => model.Nombre_responsabe)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Contactos)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Direcciones)
             </th>
             <th></th>
@@ -41,12 +38,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Nombre_responsabe)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Contactos.Detalle)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Direcciones.Barrio)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id_nino" class=" btn btn-info"><i class="fa fa-pencil" aria-hidden="true"></i> Editar</a> |

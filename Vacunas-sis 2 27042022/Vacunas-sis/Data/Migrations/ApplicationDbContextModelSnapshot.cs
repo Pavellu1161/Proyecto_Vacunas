@@ -219,25 +219,27 @@ namespace Vacunas_sis.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Vacunas_sis.Models.Contacto", b =>
+            modelBuilder.Entity("Vacunas_sis.Models.Cita", b =>
                 {
-                    b.Property<int>("Id_contacto")
+                    b.Property<int>("IdCita")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Detalle")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("Nombre_responsable")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("Fecha_proxima")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("Tipo_de_contacto")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("IdDosis")
+                        .HasColumnType("int");
 
-                    b.HasKey("Id_contacto");
+                    b.HasKey("IdCita");
 
-                    b.ToTable("Contacto");
+                    b.HasIndex("IdDosis");
+
+                    b.ToTable("Citas");
                 });
 
             modelBuilder.Entity("Vacunas_sis.Models.Detalle_Vacuna", b =>
@@ -277,9 +279,6 @@ namespace Vacunas_sis.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Barrio")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Cuidad")
                         .HasColumnType("nvarchar(max)");
 
@@ -291,6 +290,31 @@ namespace Vacunas_sis.Data.Migrations
                     b.ToTable("Direccion");
                 });
 
+            modelBuilder.Entity("Vacunas_sis.Models.Dosis", b =>
+                {
+                    b.Property<int>("IdDosis")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Id_nino")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Id_vacuna")
+                        .HasColumnType("int");
+
+                    b.Property<int>("restante")
+                        .HasColumnType("int");
+
+                    b.HasKey("IdDosis");
+
+                    b.HasIndex("Id_nino");
+
+                    b.HasIndex("Id_vacuna");
+
+                    b.ToTable("Doses");
+                });
+
             modelBuilder.Entity("Vacunas_sis.Models.Informacion_nino", b =>
                 {
                     b.Property<int>("Id_nino")
@@ -298,15 +322,16 @@ namespace Vacunas_sis.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("Contacto")
+                        .HasMaxLength(60)
+                        .HasColumnType("int");
+
                     b.Property<string>("Edad_cap")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Fecha_nacimineto")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("Id_contacto")
-                        .HasColumnType("int");
 
                     b.Property<int>("Id_direccion")
                         .HasColumnType("int");
@@ -327,8 +352,6 @@ namespace Vacunas_sis.Data.Migrations
                         .HasColumnType("nvarchar(60)");
 
                     b.HasKey("Id_nino");
-
-                    b.HasIndex("Id_contacto");
 
                     b.HasIndex("Id_direccion");
 
@@ -439,6 +462,17 @@ namespace Vacunas_sis.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Vacunas_sis.Models.Cita", b =>
+                {
+                    b.HasOne("Vacunas_sis.Models.Dosis", "Doses")
+                        .WithMany("Citas")
+                        .HasForeignKey("IdDosis")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Doses");
+                });
+
             modelBuilder.Entity("Vacunas_sis.Models.Detalle_Vacuna", b =>
                 {
                     b.HasOne("Vacunas_sis.Models.Vacunas", "Vacunas")
@@ -450,21 +484,32 @@ namespace Vacunas_sis.Data.Migrations
                     b.Navigation("Vacunas");
                 });
 
-            modelBuilder.Entity("Vacunas_sis.Models.Informacion_nino", b =>
+            modelBuilder.Entity("Vacunas_sis.Models.Dosis", b =>
                 {
-                    b.HasOne("Vacunas_sis.Models.Contacto", "Contactos")
-                        .WithMany("Ninos")
-                        .HasForeignKey("Id_contacto")
+                    b.HasOne("Vacunas_sis.Models.Informacion_nino", "Ninos")
+                        .WithMany("Dosis")
+                        .HasForeignKey("Id_nino")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Vacunas_sis.Models.Vacunas", "Vacunas")
+                        .WithMany("Doses")
+                        .HasForeignKey("Id_vacuna")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Ninos");
+
+                    b.Navigation("Vacunas");
+                });
+
+            modelBuilder.Entity("Vacunas_sis.Models.Informacion_nino", b =>
+                {
                     b.HasOne("Vacunas_sis.Models.Direccion", "Direcciones")
                         .WithMany("Ninos")
                         .HasForeignKey("Id_direccion")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Contactos");
 
                     b.Navigation("Direcciones");
                 });
@@ -488,11 +533,6 @@ namespace Vacunas_sis.Data.Migrations
                     b.Navigation("Ninos");
                 });
 
-            modelBuilder.Entity("Vacunas_sis.Models.Contacto", b =>
-                {
-                    b.Navigation("Ninos");
-                });
-
             modelBuilder.Entity("Vacunas_sis.Models.Detalle_Vacuna", b =>
                 {
                     b.Navigation("Registros");
@@ -503,14 +543,23 @@ namespace Vacunas_sis.Data.Migrations
                     b.Navigation("Ninos");
                 });
 
+            modelBuilder.Entity("Vacunas_sis.Models.Dosis", b =>
+                {
+                    b.Navigation("Citas");
+                });
+
             modelBuilder.Entity("Vacunas_sis.Models.Informacion_nino", b =>
                 {
+                    b.Navigation("Dosis");
+
                     b.Navigation("Registros");
                 });
 
             modelBuilder.Entity("Vacunas_sis.Models.Vacunas", b =>
                 {
                     b.Navigation("Detalles");
+
+                    b.Navigation("Doses");
                 });
 #pragma warning restore 612, 618
         }
