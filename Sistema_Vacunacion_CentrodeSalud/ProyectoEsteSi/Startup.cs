@@ -63,7 +63,7 @@ namespace ProyectoEsteSi
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Citas}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
         }
