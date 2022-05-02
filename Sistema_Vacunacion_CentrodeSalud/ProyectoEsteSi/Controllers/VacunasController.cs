@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using ProyectoEsteSi.Common;
 using ProyectoEsteSi.Data;
 using ProyectoEsteSi.Models;
 
@@ -13,6 +14,8 @@ namespace ProyectoEsteSi.Controllers
     public class VacunasController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly int RecordsPerpage = 10;
+        private Pagination<Vacuna> paginationPaquete;
 
         public VacunasController(ApplicationDbContext context)
         {
@@ -20,9 +23,38 @@ namespace ProyectoEsteSi.Controllers
         }
 
         // GET: Vacunas
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string search, int page = 1)
         {
-            return View(await _context.Vacunas.ToListAsync());
+            int totalRecords = 0;
+
+            if (search == null)
+            {
+                search = "";
+            }
+
+            totalRecords = await _context.Vacunas.CountAsync(
+                d => d.Nombre_vacuna.Contains(search));
+
+            var paquetes = await _context.Vacunas.Where(d => d.Nombre_vacuna.Contains(search)).ToListAsync();
+
+            var paqueteresult = paquetes.OrderBy(o => o.Nombre_vacuna)
+                .Skip((page - 1) * RecordsPerpage)
+                .Take(RecordsPerpage);
+
+            var totalPages = (int)Math.Ceiling((double)totalRecords / RecordsPerpage);
+
+            paginationPaquete = new Pagination<Vacuna>()
+            {
+                RecordsPerPage = this.RecordsPerpage,
+                TotalRecords = totalRecords,
+                TotalPage = totalPages,
+                CurrentPage = page,
+                Search = search,
+                Result = paqueteresult
+            };
+
+
+            return View(paginationPaquete);
         }
 
         // GET: Vacunas/Details/5

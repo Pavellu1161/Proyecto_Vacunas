@@ -1,0 +1,115 @@
+﻿@model IEnumerable<ProyectoEsteSi.ViewModels.RepCitaViewModel>
+
+@{
+    Layout = null;
+}
+
+
+@{
+    ViewData["Title"] = "CitasPDF";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+
+         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+
+    </head>
+
+
+
+<body>
+      <div class="row main-header1 align-content-center">
+        <div class="col-auto ">
+            <img src="~/lib/gobhn.png" class="mx-auto d-block" />
+        </div>
+   
+
+    </div>
+
+    	<div class="col-12 main-header1 align-content-center " >
+		 
+            <div>
+                <center><span><h3 class="text-white" > Registro de Vacunacion </h3> </span></center>	
+            </div>
+            <div>
+
+            </div>
+
+   
+    </div>
+
+    <table class="table ml-3 .table-striped ">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Numero_identidad)
+            </th>
+             <th>
+               <b>Nombre del Paciente</b>
+            </th>
+              <th>
+               <b>Numero de Telefono</b>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fecha)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre_vacuna)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.restante)
+            </th>
+              
+            <th>
+                @Html.DisplayNameFor(model => model.Fecha_proxima)
+            </th>
+            <th>
+               <b>Direccion</b>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody >
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Numero_identidad)
+                </td>
+                  <td>
+                    @Html.DisplayFor(modelItem => item.Nombre_Paciente)
+                </td>
+                  <td>
+                    @Html.DisplayFor(modelItem => item.Tel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fecha)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre_vacuna)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.restante)
+                </td>
+                
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fecha_proxima)
+                </td>
+                   <td>
+                    @Html.DisplayFor(modelItem => item.DetalleDir)
+                </td>
+               
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+</body>
+</html>

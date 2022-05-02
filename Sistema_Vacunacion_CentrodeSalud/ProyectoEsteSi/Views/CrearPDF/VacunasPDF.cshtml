@@ -1,0 +1,94 @@
+﻿@model IEnumerable<Vacuna>
+
+
+ @{
+    Layout = null;
+}
+
+
+@{
+    ViewData["Title"] = "VacunasPDF";
+}
+
+
+<!DOCTYPE html>
+<html>
+
+    <head>
+
+         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+
+    </head>
+
+
+
+<body>
+      <div class="row main-header1 align-content-center">
+        <div class="col-auto ">
+            <img src="~/lib/gobhn.png" class="mx-auto d-block" />
+        </div>
+   
+
+    </div>
+
+    	<div class="col-12 main-header1 align-content-center " >
+		 
+            <div>
+                <center><span><h3 class="text-white" > Vacunas Disponibles </h3> </span></center>	
+            </div>
+            <div>
+
+            </div>
+
+   
+
+    </div>
+
+    <table class="col-sm-4 table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre_vacuna)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Abreviatura_vacuna)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dosis_aplicables)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Edad_aplicable)
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Nombre_vacuna)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Abreviatura_vacuna)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Dosis_aplicables)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Edad_aplicable)
+    </td>
+   
+    
+</tr>}
+    </tbody>
+</table>
+
+
+
+
+
+    </body>
+
+    </html>

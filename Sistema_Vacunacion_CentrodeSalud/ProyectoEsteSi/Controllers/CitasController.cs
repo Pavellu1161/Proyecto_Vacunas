@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using ProyectoEsteSi.Common;
 using ProyectoEsteSi.Data;
 using ProyectoEsteSi.Models;
 using ProyectoEsteSi.ViewModels;
@@ -14,6 +15,8 @@ namespace ProyectoEsteSi.Controllers
     public class CitasController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly int RecordsPerpage = 10;
+        private Pagination<CitaViewModel> paginationPaquete;
 
         public CitasController(ApplicationDbContext context)
         {
@@ -21,12 +24,14 @@ namespace ProyectoEsteSi.Controllers
         }
 
         // GET: Citas
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string search, int page = 1)
         {
             var citas = await _context.Citas.Include(c => c.Dosis).ToListAsync();
 
             List<CitaViewModel> citasViewModel = new List<CitaViewModel>();
 
+           
+          
             foreach (var item in citas)
             {
                 CitaViewModel citaViewModel = new CitaViewModel();

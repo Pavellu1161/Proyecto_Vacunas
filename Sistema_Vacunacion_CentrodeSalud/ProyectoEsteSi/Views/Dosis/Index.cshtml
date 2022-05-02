@@ -1,55 +1,141 @@
-﻿@model IEnumerable<ProyectoEsteSi.Models.Dosi>
+﻿ 
+@model ProyectoEsteSi.Common.Pagination<Dosi>
 
-@{
-    ViewData["Title"] = "Index";
-}
+@{ ViewData["Title"] = "Index";
+    
+    }
 
 <br />
 <h1 style="text-align:center">Información dosis</h1>
 
-<p>
+
+<div class="row">
     <a asp-action="Create" class="btn btn-primary ml-5"><i class="fa fa-plus-circle" aria-hidden="true"></i> Ingresar nueva dosis</a>
-</p>
+    <div class="col-auto">
+        <input type="text" class="form-control-plaintext" id="txt-search" placeholder="Buscar..." />
+    </div>
+    <div class="col-auto">
+        <a class="btn btn-success" onclick="destin_search()" id="search-link"><i class="fas fa-search"></i></a>
+    </div>
+</div>
 <table class="table ml-lg-5">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.IdDosis)
+                @Html.DisplayNameFor(model => model.Result.SingleOrDefault().IdDosis)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Pacientes.Numero_identidad)
+                @Html.DisplayNameFor(model => model.Result.SingleOrDefault().Pacientes.Numero_identidad)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Vacunas.Nombre_vacuna)
+                @Html.DisplayNameFor(model => model.Result.SingleOrDefault().Vacunas.Nombre_vacuna)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.restante)
+                @Html.DisplayNameFor(model => model.Result.SingleOrDefault().restante)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var item in Model.Result)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdDosis)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Pacientes.Numero_identidad)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Vacunas.Nombre_vacuna)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.restante)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.IdDosis" class=" btn btn-info"><i class="fa fa-pencil" aria-hidden="true"></i> Editar</a> |
-                <a asp-action="Details" asp-route-id="@item.IdDosis" class="btn btn-success"><i class="fa fa-info-circle" aria-hidden="true"></i> Detalles</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdDosis" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</a>
-            </td>
-        </tr>
-        }
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.IdDosis)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Pacientes.Numero_identidad)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Vacunas.Nombre_vacuna)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.restante)
+    </td>
+    <td>
+        <a asp-action="Edit" asp-route-id="@item.IdDosis" class=" btn btn-info"><i class="fa fa-pencil" aria-hidden="true"></i> Editar</a> |
+        <a asp-action="Details" asp-route-id="@item.IdDosis" class="btn btn-success"><i class="fa fa-info-circle" aria-hidden="true"></i> Detalles</a> |
+        <a asp-action="Delete" asp-route-id="@item.IdDosis" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</a>
+    </td>
+</tr>}
     </tbody>
 </table>
+
+<footer class="page-footer font-small mdb-color darken-3 pt-4 navbar-fixed-bottom">
+    
+     <div class="container">
+<div class="row">
+    @if (Model.Result.Count() > 0)
+    {
+<span>
+    <strong>@Model.TotalRecords</strong> registros encontrados
+</span>
+                <span> | </span>
+                                <span>
+                                    Pagina <strong>@Model.CurrentPage</strong> de
+                                    <strong>@Model.TotalPage</strong>
+                                </span>
+                                                <span> | </span> }
+
+
+                                            else
+                                            {
+                                <span>No hay resultados para esta busqueda</span>
+                                                <span> | </span>}
+    </font>
+
+    @if (Model.CurrentPage > 1)
+    {
+
+@Html.ActionLink("<<", "Index", new { Page = 1, Search = Model.Search },
+            new { @class = "btn btn-sm btn-default" }
+        )
+
+                <span></span>
+
+                                @Html.ActionLink("Anterior", "Index", new { Page = Model.CurrentPage - 1, Search = Model.Search },
+                                                 new { @class = "btn btn-sm btn-default" }
+                                             ) }
+                            else
+                            {
+                @Html.ActionLink("<<", "Index", new { Page = 1, Search = Model.Search },
+                                 new { @class = "btn btn-sm btn-default disabled" }
+                             )
+                                <span></span>
+                                                @Html.ActionLink("Anterior", "Index", new { Page = 1, Search = Model.Search },
+                                                                 new { @class = "btn btn-sm btn-default disabled" }
+                                                             )}
+
+    <span></span>
+
+    @if (Model.CurrentPage < Model.TotalPage)
+    {
+@Html.ActionLink("Siguiente", "Index", new { Page = Model.CurrentPage + 1, Search = Model.Search },
+           new { @class = "btn btn-sm btn-default" }
+       )
+
+                <span></span>
+
+                                @Html.ActionLink(">>", "Index2", new { Page = Model.TotalPage, Search = Model.Search },
+                                                new { @class = "btn btn-sm btn-default" }
+                                            ) }
+                            else
+                            {
+                @Html.ActionLink("Siguiente", "Index", new { Page = Model.CurrentPage - 1, Search = Model.Search },
+                                 new { @class = "btn btn-sm btn-default disabled" }
+                             )
+
+                                <span></span>
+
+                                                @Html.ActionLink(">>", "Index", new { Page = Model.TotalPage, Search = Model.Search },
+                                                                 new { @class = "btn btn-sm btn-default disabled" }
+                                                             )}
+
+</div>
+
+</div>
+</footer>
+    <link rel="stylesheet" href="~/css/common.css" />
+    <script src="~/js/departaments.js" asp-append-version="true"></script>
+
+

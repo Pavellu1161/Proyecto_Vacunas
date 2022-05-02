@@ -15,12 +15,12 @@
             <input type="hidden" asp-for="IdDosis" />
             <div class="form-group">
                 <label asp-for="Pacientes.Numero_identidad" class="control-label"></label>
-                <select asp-for="Pacientes.Numero_identidad" class="form-control" asp-items="ViewBag.Id_nino"></select>
+                <select asp-for="Id_nino" class="form-control" asp-items="ViewBag.Id_nino"></select>
                 <span asp-validation-for="Id_nino" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Vacunas.Nombre_vacuna" class="control-label"></label>
-                <select asp-for="Vacunas.Nombre_vacuna" class="form-control" asp-items="ViewBag.Id_vacuna"></select>
+                <select asp-for="Id_vacuna" class="form-control" asp-items="ViewBag.Id_vacuna"></select>
                 <span asp-validation-for="Id_vacuna" class="text-danger"></span>
             </div>
             <div class="form-group">

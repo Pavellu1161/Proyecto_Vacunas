@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using ProyectoEsteSi.Common;
 using ProyectoEsteSi.Data;
 using ProyectoEsteSi.Models;
 
@@ -14,15 +15,47 @@ namespace ProyectoEsteSi.Controllers
     {
         private readonly ApplicationDbContext _context;
 
+        private readonly int RecordsPerpage = 10;
+        private Pagination<Direccion> paginationPaquete;
+
         public DireccionsController(ApplicationDbContext context)
         {
             _context = context;
         }
 
         // GET: Direccions
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string search, int page = 1)
         {
-            return View(await _context.Direcciones.ToListAsync());
+            int totalRecords = 0;
+
+            if (search == null)
+            {
+                search = "";
+            }
+
+            totalRecords = await _context.Direcciones.CountAsync(
+                d => d.Cuidad.Contains(search));
+
+            var paquetes = await _context.Direcciones.Where(d => d.Cuidad.Contains(search)).ToListAsync();
+
+            var paqueteresult = paquetes.OrderBy(o => o.Cuidad)
+                .Skip((page - 1) * RecordsPerpage)
+                .Take(RecordsPerpage);
+
+            var totalPages = (int)Math.Ceiling((double)totalRecords / RecordsPerpage);
+
+            paginationPaquete = new Pagination<Direccion>()
+            {
+                RecordsPerPage = this.RecordsPerpage,
+                TotalRecords = totalRecords,
+                TotalPage = totalPages,
+                CurrentPage = page,
+                Search = search,
+                Result = paqueteresult
+            };
+
+
+            return View(paginationPaquete);
         }
 
         // GET: Direccions/Details/5

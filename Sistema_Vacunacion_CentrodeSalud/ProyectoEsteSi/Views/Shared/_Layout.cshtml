@@ -10,9 +10,10 @@
 
 
     <link rel="stylesheet" href="~/css/nucleo-icons.css" />
-    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="~/css/sb-admin-2.css" />
+
+    <script src="https://kit.fontawesome.com/21a6c98059.js" crossorigin="anonymous"></script>
 
 </head>
 
@@ -27,7 +28,7 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                    <i class="fa-solid fa-hospital"></i>
                 </div>
                 <div class="sidebar-brand-text mx-3">Vacunacion </div>
             </a>
@@ -38,7 +39,7 @@
             <!-- Home -->
             <li class="nav-item active">
                 <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Index">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <i class="fa-solid fa-house"></i>
                     <span>Home</span>
                 </a>
             </li>
@@ -55,7 +56,7 @@
 
             <li class="nav-item active">
                 <a class="nav-link " asp-area="" asp-controller="Direccions" asp-action="Index">
-                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                    <i class="fa-solid fa-map-location-dot"></i>
                     <span>Direccion</span>
                 </a>
             </li>
@@ -64,14 +65,15 @@
 
             <li class="nav-item active">
                 <a class="nav-link " asp-area="" asp-controller="Informacion_paciente" asp-action="Index">
-                    <i class="fa fa-user" aria-hidden="true"></i>
+                    <i class="fa-solid fa-clipboard-user"></i>
                     <span>Paciente</span>
                 </a>
             </li>
 
             <li class="nav-item active">
                 <a class="nav-link " asp-area="" asp-controller="Dosis" asp-action="Index">
-                    <i class="fa fa-user" aria-hidden="true"></i>
+                    <i class="fa-solid fa-prescription-bottle"></i>
+
                     <span>Dosis</span>
                 </a>
             </li>
@@ -87,20 +89,37 @@
 
             <li class="nav-item active">
                 <a class="nav-link" asp-area="" asp-controller="Vacunas" asp-action="Index">
-                    <i class="fa fa-bug" aria-hidden="true"></i>
+                    <i class="fa-solid fa-syringe"></i>
                     <span>Vacunas</span>
                 </a>
             </li>
 
             <li class="nav-item active">
                 <a class="nav-link " asp-area="" asp-controller="Citas" asp-action="Index">
-                    <i class="fa fa-user" aria-hidden="true"></i>
+                    <i class="fa-solid fa-book-medical"></i>
                     <span>Citas</span>
                 </a>
             </li>
 
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Reportes
+            </div>
 
-
+            <li class="nav-item active">
+                <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Privacy">
+                    <i class="fa-solid fa-file-invoice"></i>
+                    <span>Reportes</span>
+                </a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link " asp-area="" asp-controller="Alertas" asp-action="Index">
+                    <i class="fa-solid fa-bell-on"></i>
+                    <span>Alertas</span>
+                </a>
+            </li>
 
 
 

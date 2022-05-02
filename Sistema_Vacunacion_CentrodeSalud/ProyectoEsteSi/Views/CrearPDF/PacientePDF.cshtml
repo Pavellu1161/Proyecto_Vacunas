@@ -1,0 +1,88 @@
+﻿@model IEnumerable<Informacion_paciente>
+
+
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+
+         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+
+    </head>
+
+
+
+<body>
+      <div class="row main-header1 align-content-center">
+        <div class="col-auto ">
+            <img src="~/lib/gobhn.png" class="mx-auto d-block" />
+        </div>
+   
+
+    </div>
+
+    	<div class="col-12 main-header1 align-content-center " >
+		 
+            <div>
+                <center><span><h3 class="text-white" > Registro de Pacientes </h3> </span></center>	
+            </div>
+            <div>
+
+            </div>
+
+   
+    </div>
+
+<table class="col-sm-4 table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Numero_identidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre_nino)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre_responsabe)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Contacto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Direcciones.Detalle_direccion)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Numero_identidad)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Nombre_nino)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Nombre_responsabe)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Contacto)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Direcciones.Cuidad)
+    </td>
+    
+</tr>}
+    </tbody>
+</table>
+</body>
+
+</html>

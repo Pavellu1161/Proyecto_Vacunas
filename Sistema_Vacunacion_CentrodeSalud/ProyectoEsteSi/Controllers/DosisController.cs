@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using ProyectoEsteSi.Common;
 using ProyectoEsteSi.Data;
 using ProyectoEsteSi.Models;
 
@@ -13,6 +14,8 @@ namespace ProyectoEsteSi.Controllers
     public class DosisController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly int RecordsPerpage = 10;
+        private Pagination<Dosi> paginationPaquete;
 
         public DosisController(ApplicationDbContext context)
         {
@@ -20,10 +23,39 @@ namespace ProyectoEsteSi.Controllers
         }
 
         // GET: Dosis
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string search, int page = 1)
         {
-            var applicationDbContext = _context.Dosis.Include(d => d.Pacientes).Include(d => d.Vacunas);
-            return View(await applicationDbContext.ToListAsync());
+            int totalRecords = 0;
+
+            if (search == null)
+            {
+                search = "";
+            }
+
+            totalRecords = await _context.Dosis.CountAsync(
+                d => d.Id_nino.ToString().Contains(search));
+
+            var paquetes = await _context.Dosis.Where(d => d.Id_nino.ToString().Contains(search)).Include(d => d.Pacientes)
+                .Include(d => d.Vacunas).ToListAsync();
+
+            var paqueteresult = paquetes.OrderBy(o => o.Id_nino.ToString())
+                .Skip((page - 1) * RecordsPerpage)
+                .Take(RecordsPerpage);
+
+            var totalPages = (int)Math.Ceiling((double)totalRecords / RecordsPerpage);
+
+            paginationPaquete = new Pagination<Dosi>()
+            {
+                RecordsPerPage = this.RecordsPerpage,
+                TotalRecords = totalRecords,
+                TotalPage = totalPages,
+                CurrentPage = page,
+                Search = search,
+                Result = paqueteresult
+            };
+
+
+            return View(paginationPaquete);
         }
 
         // GET: Dosis/Details/5

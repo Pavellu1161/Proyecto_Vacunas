@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using ProyectoEsteSi.Common;
 using ProyectoEsteSi.Data;
 using ProyectoEsteSi.Models;
 
@@ -14,16 +15,54 @@ namespace ProyectoEsteSi.Controllers
     {
         private readonly ApplicationDbContext _context;
 
+        private readonly int RecordsPerpage = 10;
+        private Pagination<Informacion_paciente> paginationPaquete;
+
         public Informacion_pacienteController(ApplicationDbContext context)
         {
             _context = context;
         }
 
         // GET: Informacion_paciente
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string search, int page = 1)
         {
-            var applicationDbContext = _context.Pacientes.Include(i => i.Direcciones);
-            return View(await applicationDbContext.ToListAsync());
+
+
+            int totalRecords = 0;
+
+
+            if (search == null)
+            {
+                search = "";
+            }
+
+            totalRecords = await _context.Pacientes.CountAsync(
+                d => d.Numero_identidad.Contains(search));
+
+
+
+            var paquetes = await _context.Pacientes.Where
+                (d => d.Numero_identidad.Contains(search)).Include(i => i.Direcciones).ToListAsync();
+
+            var paqueteresult = paquetes.OrderBy(o => o.Numero_identidad)
+                .Skip((page - 1) * RecordsPerpage)
+                .Take(RecordsPerpage);
+
+            var totalPages = (int)Math.Ceiling((double)totalRecords / RecordsPerpage);
+
+            paginationPaquete = new Pagination<Informacion_paciente>()
+            {
+                RecordsPerPage = this.RecordsPerpage,
+                TotalRecords = totalRecords,
+                TotalPage = totalPages,
+                CurrentPage = page,
+                Search = search,
+                Result = paqueteresult
+            };
+
+           
+            return View(paginationPaquete);
+            
         }
 
         // GET: Informacion_paciente/Details/5
