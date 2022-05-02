@@ -4,17 +4,20 @@
 @{ ViewData["Title"] = "Index"; }
 
 <br />
-<h1 style="text-align:center">Registro de información del paciente:</h1>
+<h1 style="text-align:center; font-size:30px; font-weight:bold">INFORMACIÓN DEL PACIENTE:</h1>
+<hr />
+<br />
 
 <div class="row">
-    <a asp-action="Create" class="btn btn-primary ml-3"><i class="fa fa-plus-circle" aria-hidden="true"></i> Ingresar nuevo registro</a>
+    <a asp-action="Create" class="btn btn-success ml-5 mr-5"><i class="fa fa-plus-circle" aria-hidden="true"></i> Ingresar nuevo registro</a> 
     <div class="col-auto">
-        <input type="text" class="form-control-plaintext" id="txt-search" placeholder="Buscar..." />
+        <input type="text" class="form-control-plaintext " id="txt-search" placeholder="Buscar..." />
     </div>
     <div class="col-auto">
         <a class="btn btn-success" onclick="destin_search()" id="search-link"><i class="fas fa-search"></i></a>
     </div>
 </div>
+<br /><br /> 
 <body> 
     <table class="table ml-3">
     <thead>

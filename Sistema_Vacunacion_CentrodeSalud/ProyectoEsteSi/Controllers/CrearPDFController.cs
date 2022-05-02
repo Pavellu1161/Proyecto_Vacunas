@@ -108,7 +108,24 @@ namespace Sistema_Vacunacion_CentrodeSalud.Controllers
 
         }
 
+        public async Task<IActionResult> ProximaPDF()
+        {
+            var applicationDbContext = _context.Dosis
+                .Include(d => d.Pacientes)
+                .Include(d => d.Vacunas)
+                .Include(d => d.Citas.ToList()
+                .Where(d => DateTime.Now.Day - d.Fecha_proxima.Day <= 7
+                    & DateTime.Now.Day - d.Fecha_proxima.Day >= 0
+                 ));
 
+            return  new ViewAsPdf(await applicationDbContext.ToListAsync())
+            {
+                PageSize = Rotativa.AspNetCore.Options.Size.A4,
+                PageOrientation = Rotativa.AspNetCore.Options.Orientation.Landscape,
+
+                CustomSwitches = "--page-offset 0 --footer-center [page] --footer-font-size 12"
+            };
+        }
 
 
 

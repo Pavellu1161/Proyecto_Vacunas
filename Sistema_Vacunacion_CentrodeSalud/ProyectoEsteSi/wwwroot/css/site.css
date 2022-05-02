@@ -9,9 +9,9 @@ a.navbar-brand {
 }
 
 body {
-    height: auto;
-    min-height: 600px;
-    background-image:url(" https: //www.pediatricahonduras.org/wp-content/uploads/2020/01/descargar-carnet-vacunas-2020.png");
+    background-image: url('../image/1.png');
+    background-size:cover;
+    background-repeat: no-repeat;
 }
 
 

@@ -6,11 +6,12 @@
     }
 
 <br />
-<h1 style="text-align:center">Información dosis</h1>
-
+<h1 style="text-align:center; font-size:30px; font-weight:bold">INFORMACIÓN DOSIS:</h1>
+<hr />
+<br />
 
 <div class="row">
-    <a asp-action="Create" class="btn btn-primary ml-5"><i class="fa fa-plus-circle" aria-hidden="true"></i> Ingresar nueva dosis</a>
+    <a asp-action="Create" class="btn btn-success ml-5 mr-5"><i class="fa fa-plus-circle" aria-hidden="true"></i> Ingresar nueva dosis</a>
     <div class="col-auto">
         <input type="text" class="form-control-plaintext" id="txt-search" placeholder="Buscar..." />
     </div>
@@ -18,6 +19,9 @@
         <a class="btn btn-success" onclick="destin_search()" id="search-link"><i class="fas fa-search"></i></a>
     </div>
 </div>
+
+<br /><br />
+
 <table class="table ml-lg-5">
     <thead>
         <tr>

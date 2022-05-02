@@ -5,25 +5,28 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
-
+<br />
+<h1 style="text-align:center; font-size:30px; font-weight:bold">ALERTAS DE PRÓXIMAS VACUNAS:</h1>
+<hr />
+<br />
 <table class="table">
     <thead>
         <tr>
+
             <th>
-                @Html.DisplayNameFor(model => model.restante)
+                <b>Nombre paciente:</b>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Pacientes)
+                <b>Número de identidad:</b>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Pacientes.Numero_identidad)
+                <b>Número de contacto:</b>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Pacientes.Contacto)
+                <b>Vacuna aplicada:</b>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Vacunas)
+                <b>Dosis restantes:</b>
             </th>
             <th>
                 <b>Proxima dosis:</b>
@@ -34,26 +37,27 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.restante)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Pacientes.Nombre_nino)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Pacientes.Numero_identidad)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Pacientes.Contacto)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Vacunas.Nombre_vacuna)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Citas.SingleOrDefault().Fecha_proxima)
-                </td>
-            </tr>
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Pacientes.Nombre_nino)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pacientes.Numero_identidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pacientes.Contacto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Vacunas.Nombre_vacuna)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.restante)
+            </td>3
+            <td>
+                @Html.DisplayFor(modelItem => item.Citas.SingleOrDefault().Fecha_proxima)
+            </td>
+        </tr>
         }
     </tbody>
 </table>

@@ -4,10 +4,19 @@
 
 <br />
 <h1 style="text-align:center">@ViewData["Title"]</h1>
+<hr />
 <br />
 
-<div class="ml-5" style="display:flex; justify-content :center">
-    <a asp-controller="CrearPDF" asp-action="CitasPDF" class="btn btn-info mr-2">Listado de vacunación</a>
-    <a asp-controller="CrearPDF" asp-action="PacientePDF" class="btn btn-info mr-2">Listado de vacunación</a>
-    <a asp-controller="CrearPDF" asp-action="VacunasPDF" class="btn btn-info mr-2">Listado de vacunación</a>
-</div>
+<head>
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+
+<body>  
+    <div class="ml-5" style="display:flex; justify-content :center">
+        <a asp-controller="CrearPDF" asp-action="CitasPDF" class="btn btn-info mr-2" target="_blank">Listado de vacunación</a>
+        <a asp-controller="CrearPDF" asp-action="PacientePDF" class="btn btn-info mr-2" target="_blank">Listado de pacientes registrados</a>
+        <a asp-controller="CrearPDF" asp-action="VacunasPDF" class="btn btn-info mr-2" target="_blank">Vacunas ingresadas</a>
+        <a asp-controller="CrearPDF" asp-action="ProximaPDF" class="btn btn-info mr-2" target="_blank">Proxima citas de vacunación</a>
+    </div>
+</body>
+

@@ -28,7 +28,6 @@ namespace ProyectoEsteSi.Controllers
                 .Include(d => d.Citas.ToList()
                 .Where(d => DateTime.Now.Day - d.Fecha_proxima.Day <= 7
                     & DateTime.Now.Day - d.Fecha_proxima.Day >= 0
-                    & DateTime.Now.Year - d.Fecha_proxima.Year == 0
                  ));
 
             return View(await applicationDbContext.ToListAsync());

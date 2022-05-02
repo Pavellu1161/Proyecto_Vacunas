@@ -14,17 +14,16 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="IdCita" />
             <div class="form-group">
-                <label asp-for="Dosis.IdDosis" class="control-label"></label>
+                <b>Código dosis:</b>
                 <select asp-for="IdDosis" class="form-control" asp-items="ViewBag.IdDosis"></select>
-                <span asp-validation-for="IdDosis" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Fecha" class="control-label"></label>
+                <b>Fecha aplicación de la vacuna:</b>
                 <input asp-for="Fecha" class="form-control" />
                 <span asp-validation-for="Fecha" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Fecha_proxima" class="control-label"></label>
+                <b>Fecha próxima aplicación de la vacuna:</b>
                 <input asp-for="Fecha_proxima" class="form-control" />
                 <span asp-validation-for="Fecha_proxima" class="text-danger"></span>
             </div>

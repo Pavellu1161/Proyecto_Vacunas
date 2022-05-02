@@ -11,22 +11,22 @@
     <hr />
     <div style="display:flex; justify-content:center">
         <div class="form-group">
-            <label class="control-label" style="font-weight:bold"> @Html.DisplayNameFor(model => model.Nombre_vacuna)</label>
+            <b>Nombre de la vacuna:</b>
             <span class="text">@Html.DisplayFor(model => model.Nombre_vacuna)</span>
-            <br />
-            <label class="control-label" style="font-weight:bold"> @Html.DisplayNameFor(model => model.Abreviatura_vacuna)</label>
+            <br /><br />
+            <b>Abreviatura:</b>
             <span class="text">@Html.DisplayFor(model => model.Abreviatura_vacuna)</span>
-            <br />
-            <label class="control-label" style="font-weight:bold">  @Html.DisplayNameFor(model => model.Dosis_aplicables)</label>
+            <br /><br />
+            <b>Cantidad de dosis aplicables:</b>
             <span class="text">@Html.DisplayFor(model => model.Dosis_aplicables)</span>
-            <br />
-            <label class="control-label" style="font-weight:bold"> @Html.DisplayNameFor(model => model.Edad_aplicable)</label>
+            <br /><br />
+            <b>Edad para su aplicación:</b>
             <span class="text">@Html.DisplayFor(model => model.Edad_aplicable)</span>
-            <br />
+            <br /><br />
         </div>
     </div>
 </div>
 <div style="display:flex; justify-content:center">
-    <a asp-action="Edit" asp-route-id="@Model.Id_vacuna" class="btn btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i> Editar</a> |
+    <a asp-action="Edit" asp-route-id="@Model.Id_vacuna" class="btn btn-success"><i class="fa fa-pencil" aria-hidden="true"></i> Editar</a> |
     <a asp-action="Index" class="btn btn-danger"><i class="fa fa-times-circle" aria-hidden="true"></i> Cancelar</a>
 </div>
